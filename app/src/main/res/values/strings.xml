@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Outlinks</string>
+    <string name="filter">Filter</string>
+    <string name="sort_by">Sort by</string>
+    <string name="bookmark">Bookmark</string>
+    <string name="more_options">More</string>
+</resources>

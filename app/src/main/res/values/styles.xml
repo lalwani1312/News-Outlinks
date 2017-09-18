@@ -1,0 +1,84 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:textColorPrimary">@color/colorTextPrimary</item>
+        <item name="android:textColorSecondary">@color/colorTextSecondary</item>
+
+    </style>
+
+    <style name="AppTheme" parent="BaseAppTheme">
+
+    </style>
+
+    <style name="Base.TextAppearance.App" parent="@style/TextAppearance.AppCompat">
+        <item name="android:textStyle">normal</item>
+        <item name="android:textSize">@dimen/font_size_medium</item>
+        <item name="android:textColor">@color/color_font_default</item>
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <!--Body Styles-->
+    <style name="TextAppearance.App.Body" parent="Base.TextAppearance.App">
+        <item name="android:textColor">@color/color_font_body</item>
+    </style>
+
+    <style name="TextAppearance.App.Body.Regular" parent="TextAppearance.App.Body">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+
+    <style name="TextAppearance.App.Body.Regular.Small" parent="TextAppearance.App.Body.Regular">
+        <item name="android:textSize">@dimen/font_size_small</item>
+    </style>
+
+    <style name="TextAppearance.App.Body.Regular.Large" parent="TextAppearance.App.Body.Regular">
+        <item name="android:textSize">@dimen/font_size_large</item>
+    </style>
+
+    <style name="TextAppearance.App.Body.Light" parent="TextAppearance.App.Body">
+        <item name="android:fontFamily">sans-serif-light</item>
+    </style>
+
+    <style name="TextAppearance.App.Body.Medium" parent="TextAppearance.App.Body">
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+    <!--Body Styles-->
+
+    <style name="Widget.Outlinks" parent="android:Widget" />
+
+    <style name="Widget.Outlinks.Toolbar">
+        <item name="titleTextAppearance">@style/TextAppearance.ToolbarTitle</item>
+        <item name="background">?android:colorPrimary</item>
+        <item name="elevation">4dp</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflowStyle</item>
+    </style>
+
+    <style name="Widget.Outlinks.Toolbar.SmallCapsTitle">
+        <item name="titleTextAppearance">@style/TextAppearance.ToolbarTitleSmallCaps</item>
+    </style>
+
+    <style name="TextAppearance.ToolbarTitleSmallCaps" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorToolbarTitle</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
+    </style>
+
+    <style name="TextAppearance.ToolbarTitle" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+        <item name="android:textColor">@color/colorToolbarTitle</item>
+    </style>
+
+    <!-- Style to replace actionbar overflow icon. set item 'android:actionOverflowButtonStyle' in AppTheme -->
+    <style name="ActionButtonOverflowStyle" parent="android:style/Widget.Holo.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more</item>
+        <item name="android:tint">?colorAccent</item>
+        <item name="android:background">?android:attr/actionBarItemBackground</item>
+        <item name="android:contentDescription">@string/more_options</item>
+    </style>
+
+</resources>

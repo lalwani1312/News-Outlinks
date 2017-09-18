@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FAFAFA</color>
+    <color name="colorPrimaryDark">#FAFAFA</color>
+    <color name="colorAccent">#303F9F</color>
+
+    <color name="colorTextPrimary">#252525</color>
+    <color name="colorTextSecondary">#939393</color>
+
+    <color name="color_font_default">#cc2c2c2c</color>
+    <color name="color_font_title">#34495E</color>
+    <color name="color_font_subtitle">#d4000000</color>
+    <color name="color_font_body">#cc2c2c2c</color>
+
+    <color name="colorToolbarTitle">#3A3A3A</color>
+
+    <!-- main color for drawable-v21/my_ripple -->
+    <color name="my_color_highlight">#FFD9D9D9</color>
+    <!-- main color for drawable/my_ripple -->
+    <color name="colorHighlightPress">#77D9D9D9</color>
+    <color name="colorHighlightFocus">#CCD9D9D9</color>
+</resources>
