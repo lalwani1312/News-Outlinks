@@ -4,11 +4,16 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.ActionBar;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
+import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.codefather.inshortsoutlinks.BaseActivity;
@@ -16,6 +21,7 @@ import com.codefather.inshortsoutlinks.R;
 import com.codefather.inshortsoutlinks.model.News;
 
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class WebActivity extends BaseActivity {
@@ -38,6 +44,12 @@ public class WebActivity extends BaseActivity {
     @BindView(R.id.fab_bookmark)
     FloatingActionButton mFabBookmark;
 
+    @BindView(R.id.toolbar)
+    Toolbar mToolbar;
+
+    @BindView(R.id.progress_bar)
+    ProgressBar mProgressBar;
+
     public static void launchForResult(Activity activity, int requestCode, int position, News news) {
         Intent intent = new Intent(activity, WebActivity.class);
         intent.putExtra(EXTRA_POSITION, position);
@@ -49,17 +61,29 @@ public class WebActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        ButterKnife.bind(this);
 
         mNews = getIntent().getParcelableExtra(EXTRA_NEWS);
         mPosition = getIntent().getIntExtra(EXTRA_POSITION, -1);
         if (mNews == null || TextUtils.isEmpty(mNews.getUrl())) {
             finish();
         }
-//        WebSettings webSettings = mWebView.getSettings();
-//        webSettings.setJavaScriptEnabled(true);
+        setupToolbar();
+        WebSettings webSettings = mWebView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
         mWebView.setWebViewClient(new MyWebViewClient());
 
         mWebView.loadUrl(mNews.getUrl());
+    }
+
+    private void setupToolbar() {
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeButtonEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.ic_back);
+        }
     }
 
     @OnClick(R.id.fab_bookmark)
@@ -84,11 +108,21 @@ public class WebActivity extends BaseActivity {
         super.onBackPressed();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
     private class MyWebViewClient extends WebViewClient {
 
         @Override
         public void onPageFinished(WebView view, String url) {
-            mFabBookmark.setVisibility(View.VISIBLE);
+            mFabBookmark.show();
+            mProgressBar.setVisibility(View.GONE);
             if (mNews.getIsBookmarked() == 1) {
                 mFabBookmark.setImageResource(R.drawable.ic_bookmark_selected);
             } else {
@@ -100,6 +134,7 @@ public class WebActivity extends BaseActivity {
         public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
             mWebView.setVisibility(View.GONE);
             mFabBookmark.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.GONE);
             mErrorLayout.setVisibility(View.VISIBLE);
             mError.setText(errorCode + ": " + description);
         }

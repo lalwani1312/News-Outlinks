@@ -1,7 +1,6 @@
 package com.codefather.inshortsoutlinks.home;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -97,7 +96,7 @@ public class HomeActivity extends MvpBaseActivity<HomeMvp.View, HomeMvp.Presente
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == REQUEST_CODE_WEB_ACTIVITY && resultCode == RESULT_OK) {
             int position = data.getIntExtra(WebActivity.EXTRA_POSITION, -1);
-            int news = data.getParcelableExtra(WebActivity.EXTRA_NEWS);
+            News news = data.getParcelableExtra(WebActivity.EXTRA_NEWS);
             if (position != -1) {
                 mAdapter.notifyItemChanged(position);
             }
@@ -141,7 +140,7 @@ public class HomeActivity extends MvpBaseActivity<HomeMvp.View, HomeMvp.Presente
 
     @Override
     public void showFilterSortContainer() {
-        mFilterSortContainer.setVisibility(View.VISIBLE);
+        mFilterSortContainer.setVisibility(View.GONE);
     }
 
     @Override
@@ -191,9 +190,9 @@ public class HomeActivity extends MvpBaseActivity<HomeMvp.View, HomeMvp.Presente
 
     @Override
     public void navigateToWebActivity(int position, News news) {
-//        WebActivity.launchForResult(this, REQUEST_CODE_WEB_ACTIVITY, position, news);
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.getUrl()));
-        startActivity(intent);
+        WebActivity.launchForResult(this, REQUEST_CODE_WEB_ACTIVITY, position, news);
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(news.getUrl()));
+//        startActivity(intent);
     }
 
     @Override

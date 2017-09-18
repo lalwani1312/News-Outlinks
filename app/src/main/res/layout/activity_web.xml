@@ -14,15 +14,24 @@
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
+            style="@style/Widget.Outlinks.Toolbar.SmallCapsTitle"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize" />
+            android:layout_height="?android:attr/actionBarSize"
+            app:title="@string/app_name" />
 
         <WebView
             android:id="@+id/web_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="@dimen/dimen_8dp" />
+            android:layout_height="match_parent" />
+
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@style/Theme.AppCompat.Dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_bookmark"
